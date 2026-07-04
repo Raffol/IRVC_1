@@ -1,0 +1,21 @@
+{#
+  Полоса навигации между шапкой и hero-баннером.
+  Пункты меню приходят из context_processor как nav_items (список объектов NavigationItem).
+  active_page — строка-идентификатор текущей страницы, передаётся из view.
+#}
+<nav class="subnav" aria-label="Основная навигация">
+  <div class="subnav__inner">
+    {% for item in nav_items %}
+      <a href="{{ item.url }}" class="subnav__link {% if item.slug == active_page %}active{% endif %}">
+        {{ item.label }}
+      </a>
+    {% empty %}
+      {# Fallback, пока NavigationItem не заполнен в админке #}
+      <a href="{% url 'home' %}"     class="subnav__link {% if active_page == 'home' %}active{% endif %}">Главная</a>
+      <a href="{% url 'team' %}"     class="subnav__link {% if active_page == 'team' %}active{% endif %}">Состав ИРВЦ</a>
+      <a href="{% url 'news' %}"     class="subnav__link {% if active_page == 'news' %}active{% endif %}">Новости</a>
+      <a href="{% url 'projects' %}" class="subnav__link {% if active_page == 'projects' %}active{% endif %}">Проекты</a>
+      <a href="{% url 'contacts' %}" class="subnav__link {% if active_page == 'contacts' %}active{% endif %}">Контакты</a>
+    {% endfor %}
+  </div>
+</nav>

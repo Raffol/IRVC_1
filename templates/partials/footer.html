@@ -1,0 +1,63 @@
+{% load static %}
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__logo">ИРВЦ</div>
+        <p class="footer__about">
+          Информационно-ресурсный волонтёрский центр.
+          Объединяем неравнодушных людей и помогаем им находить дела по душе.
+        </p>
+      </div>
+
+      <div class="footer__col">
+        <h4>Навигация</h4>
+        <ul>
+          <li><a href="{% url 'home' %}">Главная</a></li>
+          <li><a href="{% url 'team' %}">Состав ИРВЦ</a></li>
+          <li><a href="{% url 'news' %}">Новости</a></li>
+          <li><a href="{% url 'projects' %}">Проекты</a></li>
+          <li><a href="{% url 'contacts' %}">Контакты</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4>Волонтёрам</h4>
+        <ul>
+          <li>
+            <a href="{{ settings.join_url|default:'#' }}"
+               {% if settings.join_url %}target="_blank" rel="noopener"{% endif %}>
+              Как стать волонтёром
+            </a>
+          </li>
+          <li><a href="#">Личный кабинет</a></li>
+          <li><a href="#">Часто задаваемые вопросы</a></li>
+          <li><a href="#">Обучение</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4>Контакты</h4>
+        <ul>
+          {% if settings.email %}
+            <li><a href="mailto:{{ settings.email }}">{{ settings.email }}</a></li>
+          {% endif %}
+          {% if settings.phone %}
+            <li><a href="tel:{{ settings.phone_clean|default:settings.phone }}">{{ settings.phone }}</a></li>
+          {% endif %}
+          {% if settings.vk_url %}
+            <li><a href="{{ settings.vk_url }}" target="_blank" rel="noopener">ВКонтакте</a></li>
+          {% endif %}
+          {% if settings.telegram_url %}
+            <li><a href="{{ settings.telegram_url }}" target="_blank" rel="noopener">Telegram</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© {% now "Y" %} ИРВЦ. Все права защищены.</span>
+      <span>Политика конфиденциальности · Обработка ПДн</span>
+    </div>
+  </div>
+</footer>

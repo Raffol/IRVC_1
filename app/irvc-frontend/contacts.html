@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Контакты — ИРВЦ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="brand-stripe"></div>
+
+<header class="header">
+  <div class="header__inner">
+    <a href="index.html" class="logo">
+      <span class="logo__mark logo__mark--placeholder"></span>
+      <span class="logo__text"><strong>ИРВЦ</strong><small>Волонтёрский центр</small></span>
+    </a>
+    <div class="header__cta">
+      <a href="#" class="btn btn--outline">Войти</a>
+      <a href="https://forms.yandex.ru/u/example/" target="_blank" rel="noopener" class="btn btn--primary">Стать волонтёром</a>
+      <button class="nav-toggle" id="menuOpen" aria-label="Открыть меню">☰</button>
+    </div>
+  </div>
+</header>
+
+<nav class="subnav" aria-label="Основная навигация">
+  <div class="subnav__inner">
+    <a href="index.html" class="subnav__link">Главная</a>
+    <a href="team.html" class="subnav__link">Состав ИРВЦ</a>
+    <a href="news.html" class="subnav__link">Новости</a>
+    <a href="projects.html" class="subnav__link">Проекты</a>
+    <a href="contacts.html" class="subnav__link active">Контакты</a>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero__inner">
+    <div class="page-hero__crumbs">
+      <a href="index.html">Главная</a> <span>/</span> <span>Контакты</span>
+    </div>
+    <h1 class="page-hero__title">Контакты</h1>
+    <p class="page-hero__lead">
+      Мы рады любым вопросам и предложениям. Пишите, звоните или приходите в офис —
+      мы всегда на связи.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="contacts-grid">
+
+      <!-- Левая колонка: контакты -->
+      <div class="contacts-info">
+        <div class="contact-item">
+          <div class="contact-item__icon">✉</div>
+          <div>
+            <div class="contact-item__label">Электронная почта</div>
+            <div class="contact-item__value"><a href="mailto:info@irvc.example">info@irvc.example</a></div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-item__icon contact-item__icon--green">☏</div>
+          <div>
+            <div class="contact-item__label">Телефон</div>
+            <div class="contact-item__value"><a href="tel:+70000000000">+7 (000) 000-00-00</a></div>
+            <div style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">пн–пт, 10:00–18:00</div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-item__icon">📍</div>
+          <div>
+            <div class="contact-item__label">Адрес</div>
+            <div class="contact-item__value">ул. Примерная, д. 1, оф. 42</div>
+            <div style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">г. Город, 000000</div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-item__icon contact-item__icon--green">◇</div>
+          <div>
+            <div class="contact-item__label">Соцсети</div>
+            <div class="contact-item__value" style="display: flex; gap: 12px; flex-wrap: wrap;">
+              <a href="#">ВКонтакте</a>
+              <a href="#">Telegram</a>
+              <a href="#">YouTube</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Правая колонка: форма обратной связи -->
+      <div class="contact-form">
+        <h3>Написать нам</h3>
+        <p>Опишите, чем можем помочь. Ответим в течение пары рабочих дней.</p>
+
+        <div class="field">
+          <label for="c-name">Как к вам обращаться</label>
+          <input type="text" id="c-name" placeholder="Имя">
+        </div>
+
+        <div class="field">
+          <label for="c-email">Email или телефон</label>
+          <input type="text" id="c-email" placeholder="Куда написать в ответ">
+        </div>
+
+        <div class="field">
+          <label for="c-message">Сообщение</label>
+          <textarea id="c-message" placeholder="Расскажите свою историю или задайте вопрос"></textarea>
+        </div>
+
+        <button type="button" class="btn btn--primary btn--lg btn--wide">Отправить</button>
+      </div>
+
+    </div>
+
+    <!-- Заглушка карты -->
+    <div class="map-placeholder">
+      <div class="map-placeholder__text">
+        Здесь будет интерактивная карта<br>
+        <span style="color: var(--text-hint); font-weight: 400; font-size: 13px;">Яндекс.Карты — вставится по адресу из админки</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__logo">ИРВЦ</div>
+        <p class="footer__about">Информационно-ресурсный волонтёрский центр. Объединяем неравнодушных людей и помогаем им находить дела по душе.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Навигация</h4>
+        <ul>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="team.html">Состав ИРВЦ</a></li>
+          <li><a href="news.html">Новости</a></li>
+          <li><a href="projects.html">Проекты</a></li>
+          <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Волонтёрам</h4>
+        <ul>
+          <li><a href="#">Как стать волонтёром</a></li>
+          <li><a href="#">Личный кабинет</a></li>
+          <li><a href="#">Часто задаваемые вопросы</a></li>
+          <li><a href="#">Обучение</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Контакты</h4>
+        <ul>
+          <li><a href="mailto:info@irvc.example">info@irvc.example</a></li>
+          <li><a href="tel:+70000000000">+7 (000) 000-00-00</a></li>
+          <li><a href="#">ВКонтакте</a></li>
+          <li><a href="#">Telegram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 ИРВЦ. Все права защищены.</span>
+      <span>Политика конфиденциальности · Обработка ПДн</span>
+    </div>
+  </div>
+</footer>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu__head">
+    <div class="logo">
+      <span class="logo__mark logo__mark--placeholder"></span>
+      <span class="logo__text"><strong>ИРВЦ</strong></span>
+    </div>
+    <button class="mobile-menu__close" id="menuClose" aria-label="Закрыть">✕</button>
+  </div>
+  <nav class="mobile-menu__nav">
+    <a href="index.html">Главная</a>
+    <a href="team.html">Состав ИРВЦ</a>
+    <a href="news.html">Новости</a>
+    <a href="projects.html">Проекты</a>
+    <a href="contacts.html" class="active">Контакты</a>
+  </nav>
+  <a href="https://forms.yandex.ru/u/example/" target="_blank" rel="noopener" class="btn btn--primary btn--lg">Стать волонтёром</a>
+</div>
+
+<script src="menu.js"></script>
+</body>
+</html>

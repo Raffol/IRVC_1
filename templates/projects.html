@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Проекты — ИРВЦ{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="page-hero__inner">
+    <div class="page-hero__crumbs">
+      <a href="{% url 'home' %}">Главная</a> <span>/</span> <span>Проекты</span>
+    </div>
+    <h1 class="page-hero__title">Наши проекты</h1>
+    <p class="page-hero__lead">
+      Направления, в которых работает ИРВЦ. Каждый проект — это регулярные акции,
+      обучение и возможность подключиться в любое время.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    {#
+      Vue-остров: фильтр проектов по категориям.
+      Django сериализует данные в JSON и кладёт в data-атрибуты.
+      Фильтрация работает без запросов к серверу.
+    #}
+    <div id="projects-filter-app"
+         data-categories="{{ project_categories_json|default:'[]' }}"
+         data-projects="{{ projects_json|default:'[]' }}">
+      {# Fallback-разметка на случай, если Vue не загрузился — SEO и no-JS #}
+      <noscript>
+        <div class="projects-grid">
+          {% for p in projects %}
+            <article class="project-card">
+              <span class="project-card__badge {% if p.status == 'recruiting' %}project-card__badge--blue{% endif %}">
+                {{ p.get_status_display }}
+              </span>
+              <h3 class="project-card__title">{{ p.title }}</h3>
+              <p class="project-card__lead">{{ p.lead }}</p>
+            </article>
+          {% endfor %}
+        </div>
+      </noscript>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <section class="cta-section">
+    <div>
+      <h2 class="cta-section__title">Хотите присоединиться к проекту?</h2>
+      <p class="cta-section__lead">Выберите то, что вам близко — заполните анкету и укажите желаемое направление.</p>
+    </div>
+    <div class="cta-section__action">
+      <a href="{{ settings.join_url|default:'#' }}"
+         {% if settings.join_url %}target="_blank" rel="noopener"{% endif %}
+         class="btn btn--primary btn--lg">
+        {{ settings.cta_button_text|default:"Заполнить анкету" }}
+      </a>
+    </div>
+  </section>
+</div>
+
+{% endblock %}
+
+{% block vue %}
+  {# Vue-остров — грузим Vue только на этой странице #}
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.4.38/dist/vue.global.prod.js"
+          onerror="var s=document.createElement('script');s.src='{% static 'js/vendor/vue.global.prod.js' %}';document.head.appendChild(s);"></script>
+{% endblock %}
+
+{% block vue_widgets %}
+  <script src="{% static 'js/widgets/projects-filter.js' %}"></script>
+{% endblock %}

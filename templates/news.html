@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Новости — ИРВЦ{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="page-hero__inner">
+    <div class="page-hero__crumbs">
+      <a href="{% url 'home' %}">Главная</a> <span>/</span> <span>Новости</span>
+    </div>
+    <h1 class="page-hero__title">Новости и события</h1>
+    <p class="page-hero__lead">
+      Актуальная лента из нашей группы ВКонтакте. Обновляется автоматически.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    {% if posts %}
+      <div class="news-grid">
+        {% for post in posts %}
+          <article class="news-card">
+            <div class="news-card__image bg-image"
+                 {% if post.image %}style="background-image: url('{{ post.image }}');"{% endif %}>
+              <span class="news-card__source"></span>
+            </div>
+            <div class="news-card__body">
+              <div class="news-card__date">{{ post.published_at|date:"j F Y" }}</div>
+              <h3 class="news-card__title">{{ post.title|default:post.text|truncatewords:8 }}</h3>
+              <p class="news-card__excerpt">{{ post.text|truncatewords:24 }}</p>
+              <div class="news-card__foot">
+                <div class="news-card__stats">
+                  <span>♥ {{ post.likes }}</span>
+                  <span>💬 {{ post.comments }}</span>
+                </div>
+                <a href="{{ post.url }}" target="_blank" rel="noopener" class="news-card__more">Читать →</a>
+              </div>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+
+      {# Пагинация — стандартная Django-пагинация (Paginator в view) #}
+      {% if is_paginated %}
+        <div class="pagination">
+          {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">←</a>
+          {% endif %}
+
+          {% for num in page_obj.paginator.page_range %}
+            {% if num == page_obj.number %}
+              <span class="current">{{ num }}</span>
+            {% else %}
+              <a href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+          {% endfor %}
+
+          {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">→</a>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% else %}
+      <div style="text-align: center; padding: 60px 0; color: var(--text-muted);">
+        Пока нет опубликованных новостей.
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}

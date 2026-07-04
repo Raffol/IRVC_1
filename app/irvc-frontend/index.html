@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ИРВЦ — Иркутский региональный волонтёрский центр</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="brand-stripe"></div>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <div class="header__inner">
+    <a href="index.html" class="logo">
+      <!-- [ADMIN] settings.logo -->
+      <span class="logo__mark logo__mark--placeholder"></span>
+      <span class="logo__text">
+        <strong>ИРВЦ</strong>
+        <small>Волонтёрский центр</small>
+      </span>
+    </a>
+    <div class="header__cta">
+      <a href="#" class="btn btn--outline">Войти</a>
+      <!-- [ADMIN] settings.join_url -->
+      <a href="https://forms.yandex.ru/u/example/" target="_blank" rel="noopener" class="btn btn--primary">Стать волонтёром</a>
+      <button class="nav-toggle" id="menuOpen" aria-label="Открыть меню">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- ================= НАВИГАЦИЯ ================= -->
+<!-- [ADMIN] NavigationItem, активный пункт — по текущему URL -->
+<nav class="subnav" aria-label="Основная навигация">
+  <div class="subnav__inner">
+    <a href="index.html" class="subnav__link active">Главная</a>
+    <a href="team.html" class="subnav__link">Состав ИРВЦ</a>
+    <a href="news.html" class="subnav__link">Новости</a>
+    <a href="projects.html" class="subnav__link">Проекты</a>
+    <a href="contacts.html" class="subnav__link">Контакты</a>
+  </div>
+</nav>
+
+<!-- ================= HERO / BANNER ================= -->
+<section class="hero">
+  <div class="hero__banner">
+    <span class="admin-hint">Баннер и все тексты — из админки</span>
+    <div class="hero__content">
+      <!-- [ADMIN] settings.hero_eyebrow -->
+      <span class="hero__eyebrow">Набор открыт — присоединяйтесь</span>
+      <!-- [ADMIN] settings.hero_title + settings.hero_title_accent -->
+      <h1 class="hero__title">
+        Помогаем людям, делаем город<br>
+        <span>лучше</span>
+      </h1>
+      <!-- [ADMIN] settings.hero_lead -->
+      <p class="hero__lead">
+        Информационно-ресурсный волонтёрский центр объединяет тех,
+        кто готов тратить своё время на добрые дела — от помощи в больницах
+        до организации крупных городских мероприятий.
+      </p>
+      <div class="hero__actions">
+        <!-- [ADMIN] settings.hero_primary_text + settings.join_url -->
+        <a href="https://forms.yandex.ru/u/example/" target="_blank" rel="noopener" class="btn btn--primary btn--lg">Присоединиться</a>
+        <!-- [ADMIN] settings.hero_secondary_text + settings.hero_secondary_url -->
+        <a href="team.html" class="btn btn--ghost btn--lg">Узнать больше</a>
+      </div>
+
+      <!-- [ADMIN] HeroStat -->
+      <div class="hero__stats">
+        <div><div class="hero__stat-num">1 200+</div><div class="hero__stat-label">волонтёров в базе</div></div>
+        <div><div class="hero__stat-num">86</div><div class="hero__stat-label">проведённых мероприятий</div></div>
+        <div><div class="hero__stat-num">24</div><div class="hero__stat-label">партнёрские организации</div></div>
+        <div><div class="hero__stat-num">7 лет</div><div class="hero__stat-label">на службе городу</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= НОВОСТИ (preview) ================= -->
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <div>
+        <h2 class="section__title">Новости и события</h2>
+        <p class="section__sub">Актуальная лента из нашей группы ВКонтакте</p>
+      </div>
+      <a href="news.html" class="section__link">Все новости →</a>
+    </div>
+    <div class="news-grid">
+      <article class="news-card">
+        <div class="news-card__image" style="background-image: url('https://images.unsplash.com/photo-1618477460930-d8bffff64172?w=800&q=80');">
+          <span class="news-card__source"></span>
+        </div>
+        <div class="news-card__body">
+          <div class="news-card__date">2 июля 2026</div>
+          <h3 class="news-card__title">Итоги субботника в Парке Победы</h3>
+          <p class="news-card__excerpt">В минувшую субботу более 60 наших волонтёров вышли на уборку центральной аллеи парка. Собрали больше 40 мешков мусора…</p>
+          <div class="news-card__foot">
+            <div class="news-card__stats"><span>♥ 142</span><span>💬 18</span></div>
+            <a href="news.html" class="news-card__more">Читать →</a>
+          </div>
+        </div>
+      </article>
+      <article class="news-card">
+        <div class="news-card__image" style="background-image: url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&q=80');">
+          <span class="news-card__source"></span>
+        </div>
+        <div class="news-card__body">
+          <div class="news-card__date">28 июня 2026</div>
+          <h3 class="news-card__title">Открыт набор волонтёров на «Дни города-2026»</h3>
+          <p class="news-card__excerpt">Нужны координаторы, помощники сцен, работа с гостями. Формы обучения — вебинары и очные встречи в конце июля…</p>
+          <div class="news-card__foot">
+            <div class="news-card__stats"><span>♥ 98</span><span>💬 24</span></div>
+            <a href="news.html" class="news-card__more">Читать →</a>
+          </div>
+        </div>
+      </article>
+      <article class="news-card">
+        <div class="news-card__image" style="background-image: url('https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=800&q=80');">
+          <span class="news-card__source"></span>
+        </div>
+        <div class="news-card__body">
+          <div class="news-card__date">20 июня 2026</div>
+          <h3 class="news-card__title">Помощь приюту «Верные друзья»</h3>
+          <p class="news-card__excerpt">Наши волонтёры организовали доставку кормов и медикаментов. Присоединиться к следующей акции можно уже сейчас…</p>
+          <div class="news-card__foot">
+            <div class="news-card__stats"><span>♥ 210</span><span>💬 42</span></div>
+            <a href="news.html" class="news-card__more">Читать →</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= СОСТАВ ИРВЦ (preview) ================= -->
+<section class="section section--muted">
+  <div class="container">
+    <div class="section__head">
+      <div>
+        <h2 class="section__title">Состав ИРВЦ</h2>
+        <p class="section__sub">Команда, которая ежедневно занимается координацией и развитием центра</p>
+      </div>
+      <a href="team.html" class="section__link">Полный список →</a>
+    </div>
+    <div class="team-grid">
+      <article class="team-card">
+        <div class="team-card__photo" style="background-image: url('https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&q=80');"></div>
+        <div class="team-card__body">
+          <span class="team-card__role-tag">Руководство</span>
+          <div class="team-card__name">Анна Соколова</div>
+          <div class="team-card__position">Директор ИРВЦ</div>
+        </div>
+      </article>
+      <article class="team-card">
+        <div class="team-card__photo" style="background-image: url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&q=80');"></div>
+        <div class="team-card__body">
+          <span class="team-card__role-tag">Руководство</span>
+          <div class="team-card__name">Дмитрий Ковалёв</div>
+          <div class="team-card__position">Заместитель директора</div>
+        </div>
+      </article>
+      <article class="team-card">
+        <div class="team-card__photo" style="background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80');"></div>
+        <div class="team-card__body">
+          <span class="team-card__role-tag">Координация</span>
+          <div class="team-card__name">Мария Иванова</div>
+          <div class="team-card__position">Координатор проектов</div>
+        </div>
+      </article>
+      <article class="team-card">
+        <div class="team-card__photo" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80');"></div>
+        <div class="team-card__body">
+          <span class="team-card__role-tag">Обучение</span>
+          <div class="team-card__name">Илья Петров</div>
+          <div class="team-card__position">Руководитель обучения</div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<div class="container">
+  <section class="cta-section">
+    <span class="admin-hint admin-hint--dark">Заголовок, текст и кнопка — из админки</span>
+    <div>
+      <!-- [ADMIN] settings.cta_title -->
+      <h2 class="cta-section__title">Присоединяйтесь к команде волонтёров</h2>
+      <!-- [ADMIN] settings.cta_lead -->
+      <p class="cta-section__lead">
+        Заполните короткую анкету — мы свяжемся с вами и подберём направление,
+        которое подходит именно вам.
+      </p>
+    </div>
+    <div class="cta-section__action">
+      <!-- [ADMIN] settings.cta_button_text + settings.join_url -->
+      <a href="https://forms.yandex.ru/u/example/" target="_blank" rel="noopener" class="btn btn--primary btn--lg">Заполнить анкету</a>
+    </div>
+  </section>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__logo">ИРВЦ</div>
+        <p class="footer__about">Информационно-ресурсный волонтёрский центр. Объединяем неравнодушных людей и помогаем им находить дела по душе.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Навигация</h4>
+        <ul>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="team.html">Состав ИРВЦ</a></li>
+          <li><a href="news.html">Новости</a></li>
+          <li><a href="projects.html">Проекты</a></li>
+          <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Волонтёрам</h4>
+        <ul>
+          <li><a href="#">Как стать волонтёром</a></li>
+          <li><a href="#">Личный кабинет</a></li>
+          <li><a href="#">Часто задаваемые вопросы</a></li>
+          <li><a href="#">Обучение</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Контакты</h4>
+        <ul>
+          <li><a href="mailto:info@irvc.example">info@irvc.example</a></li>
+          <li><a href="tel:+70000000000">+7 (000) 000-00-00</a></li>
+          <li><a href="#">ВКонтакте</a></li>
+          <li><a href="#">Telegram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 ИРВЦ. Все права защищены.</span>
+      <span>Политика конфиденциальности · Обработка ПДн</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Мобильное меню -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu__head">
+    <div class="logo">
+      <span class="logo__mark logo__mark--placeholder"></span>
+      <span class="logo__text"><strong>ИРВЦ</strong></span>
+    </div>
+    <button class="mobile-menu__close" id="menuClose" aria-label="Закрыть">✕</button>
+  </div>
+  <nav class="mobile-menu__nav">
+    <a href="index.html" class="active">Главная</a>
+    <a href="team.html">Состав ИРВЦ</a>
+    <a href="news.html">Новости</a>
+    <a href="projects.html">Проекты</a>
+    <a href="contacts.html">Контакты</a>
+  </nav>
+  <a href="https://forms.yandex.ru/u/example/" target="_blank" rel="noopener" class="btn btn--primary btn--lg">Стать волонтёром</a>
+</div>
+
+<script src="menu.js"></script>
+</body>
+</html>

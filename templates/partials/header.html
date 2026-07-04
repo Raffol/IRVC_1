@@ -1,0 +1,31 @@
+{% load static %}
+<header class="header">
+  <div class="header__inner">
+    <a href="{% url 'home' %}" class="logo">
+      {# Логотип из SiteSettings.logo, иначе — плашка-заглушка #}
+      {% if settings.logo %}
+        <span class="logo__mark"><img src="{{ settings.logo.url }}" alt="Логотип ИРВЦ"></span>
+      {% else %}
+        <span class="logo__mark logo__mark--placeholder"></span>
+      {% endif %}
+      <span class="logo__text">
+        <strong>ИРВЦ</strong>
+        <small>Волонтёрский центр</small>
+      </span>
+    </a>
+
+    <div class="header__cta">
+      {# URL входа в личный кабинет — пока placeholder, заменится когда будет auth #}
+      <a href="#" class="btn btn--outline">Войти</a>
+
+      {# Кнопка «Стать волонтёром» — ссылка из админки #}
+      <a href="{{ settings.join_url|default:'#' }}"
+         {% if settings.join_url %}target="_blank" rel="noopener"{% endif %}
+         class="btn btn--primary">
+        Стать волонтёром
+      </a>
+
+      <button class="nav-toggle" id="menuOpen" aria-label="Открыть меню">☰</button>
+    </div>
+  </div>
+</header>

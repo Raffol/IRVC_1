@@ -1,0 +1,31 @@
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu__head">
+    <div class="logo">
+      {% if settings.logo %}
+        <span class="logo__mark"><img src="{{ settings.logo.url }}" alt="Логотип ИРВЦ"></span>
+      {% else %}
+        <span class="logo__mark logo__mark--placeholder"></span>
+      {% endif %}
+      <span class="logo__text"><strong>ИРВЦ</strong></span>
+    </div>
+    <button class="mobile-menu__close" id="menuClose" aria-label="Закрыть меню">✕</button>
+  </div>
+
+  <nav class="mobile-menu__nav">
+    {% for item in nav_items %}
+      <a href="{{ item.url }}" {% if item.slug == active_page %}class="active"{% endif %}>{{ item.label }}</a>
+    {% empty %}
+      <a href="{% url 'home' %}"     {% if active_page == 'home' %}class="active"{% endif %}>Главная</a>
+      <a href="{% url 'team' %}"     {% if active_page == 'team' %}class="active"{% endif %}>Состав ИРВЦ</a>
+      <a href="{% url 'news' %}"     {% if active_page == 'news' %}class="active"{% endif %}>Новости</a>
+      <a href="{% url 'projects' %}" {% if active_page == 'projects' %}class="active"{% endif %}>Проекты</a>
+      <a href="{% url 'contacts' %}" {% if active_page == 'contacts' %}class="active"{% endif %}>Контакты</a>
+    {% endfor %}
+  </nav>
+
+  <a href="{{ settings.join_url|default:'#' }}"
+     {% if settings.join_url %}target="_blank" rel="noopener"{% endif %}
+     class="btn btn--primary btn--lg">
+    Стать волонтёром
+  </a>
+</div>

@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Состав ИРВЦ — Волонтёрский центр{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="page-hero__inner">
+    <div class="page-hero__crumbs">
+      <a href="{% url 'home' %}">Главная</a> <span>/</span> <span>Состав ИРВЦ</span>
+    </div>
+    <h1 class="page-hero__title">Состав ИРВЦ</h1>
+    <p class="page-hero__lead">
+      Команда, которая ежедневно занимается координацией и развитием волонтёрского центра.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    {% for group in team_groups %}
+      {# Показываем группу, только если в ней есть активные участники #}
+      {% with members=group.members.all %}
+        {% if members %}
+          <div class="subgroup">
+            <h2 class="subgroup-title">{{ group.name }}</h2>
+            <div class="team-grid">
+              {% for member in members %}
+                <article class="team-card">
+                  <div class="team-card__photo bg-image"
+                       {% if member.photo %}style="background-image: url('{{ member.photo.url }}');"{% endif %}></div>
+                  <div class="team-card__body">
+                    <span class="team-card__role-tag">{{ group.name }}</span>
+                    <div class="team-card__name">{{ member.name }}</div>
+                    <div class="team-card__position">{{ member.position }}</div>
+                  </div>
+                </article>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+      {% endwith %}
+    {% empty %}
+      <div style="text-align: center; padding: 60px 0; color: var(--text-muted);">
+        Список команды пока пуст. Заполните его в админке.
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<div class="container">
+  <section class="cta-section">
+    <div>
+      <h2 class="cta-section__title">Хотите оказаться в этом списке?</h2>
+      <p class="cta-section__lead">Мы всегда открыты для новых волонтёров. Заполните анкету — свяжемся в течение пары дней.</p>
+    </div>
+    <div class="cta-section__action">
+      <a href="{{ settings.join_url|default:'#' }}"
+         {% if settings.join_url %}target="_blank" rel="noopener"{% endif %}
+         class="btn btn--primary btn--lg">
+        {{ settings.cta_button_text|default:"Заполнить анкету" }}
+      </a>
+    </div>
+  </section>
+</div>
+
+{% endblock %}

@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}ИРВЦ — Информационно-ресурсный волонтёрский центр{% endblock %}
+
+{% block content %}
+
+{# ================= HERO / BANNER ================= #}
+<section class="hero">
+  <div class="hero__banner"
+       {% if settings.banner %}style="background-image: url('{{ settings.banner.url }}');"{% endif %}>
+    <div class="hero__content">
+      {% if settings.hero_eyebrow %}
+        <span class="hero__eyebrow">{{ settings.hero_eyebrow }}</span>
+      {% endif %}
+
+      <h1 class="hero__title">
+        {{ settings.hero_title|default:"Помогаем людям, делаем город" }}
+        {% if settings.hero_title_accent %}
+          <br><span>{{ settings.hero_title_accent }}</span>
+        {% endif %}
+      </h1>
+
+      {% if settings.hero_lead %}
+        <p class="hero__lead">{{ settings.hero_lead }}</p>
+      {% endif %}
+
+      <div class="hero__actions">
+        <a href="{{ settings.join_url|default:'#' }}"
+           {% if settings.join_url %}target="_blank" rel="noopener"{% endif %}
+           class="btn btn--primary btn--lg">
+          {{ settings.hero_primary_text|default:"Присоединиться" }}
+        </a>
+        {% if settings.hero_secondary_text %}
+          <a href="{{ settings.hero_secondary_url|default:'#' }}" class="btn btn--ghost btn--lg">
+            {{ settings.hero_secondary_text }}
+          </a>
+        {% endif %}
+      </div>
+
+      {% if hero_stats %}
+        <div class="hero__stats">
+          {% for stat in hero_stats %}
+            <div>
+              <div class="hero__stat-num">{{ stat.number }}</div>
+              <div class="hero__stat-label">{{ stat.label }}</div>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{# ================= НОВОСТИ (preview 3 карточки) ================= #}
+{% if news_preview %}
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <div>
+        <h2 class="section__title">Новости и события</h2>
+        <p class="section__sub">Актуальная лента из нашей группы ВКонтакте</p>
+      </div>
+      <a href="{% url 'news' %}" class="section__link">Все новости →</a>
+    </div>
+
+    <div class="news-grid">
+      {% for post in news_preview %}
+        <article class="news-card">
+          <div class="news-card__image bg-image"
+               {% if post.image %}style="background-image: url('{{ post.image }}');"{% endif %}>
+            <span class="news-card__source"></span>
+          </div>
+          <div class="news-card__body">
+            <div class="news-card__date">{{ post.published_at|date:"j F Y" }}</div>
+            <h3 class="news-card__title">{{ post.title|default:post.text|truncatewords:8 }}</h3>
+            <p class="news-card__excerpt">{{ post.text|truncatewords:24 }}</p>
+            <div class="news-card__foot">
+              <div class="news-card__stats">
+                <span>♥ {{ post.likes }}</span>
+                <span>💬 {{ post.comments }}</span>
+              </div>
+              <a href="{{ post.url }}" target="_blank" rel="noopener" class="news-card__more">Читать →</a>
+            </div>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# ================= СОСТАВ ИРВЦ (preview 4 карточки) ================= #}
+{% if team_preview %}
+<section class="section section--muted">
+  <div class="container">
+    <div class="section__head">
+      <div>
+        <h2 class="section__title">Состав ИРВЦ</h2>
+        <p class="section__sub">Команда, которая ежедневно занимается координацией и развитием центра</p>
+      </div>
+      <a href="{% url 'team' %}" class="section__link">Полный список →</a>
+    </div>
+
+    <div class="team-grid">
+      {% for member in team_preview %}
+        <article class="team-card">
+          <div class="team-card__photo bg-image"
+               {% if member.photo %}style="background-image: url('{{ member.photo.url }}');"{% endif %}></div>
+          <div class="team-card__body">
+            {% if member.group %}
+              <span class="team-card__role-tag">{{ member.group.name }}</span>
+            {% endif %}
+            <div class="team-card__name">{{ member.name }}</div>
+            <div class="team-card__position">{{ member.position }}</div>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# ================= CTA ================= #}
+<div class="container">
+  <section class="cta-section">
+    <div>
+      <h2 class="cta-section__title">
+        {{ settings.cta_title|default:"Присоединяйтесь к команде волонтёров" }}
+      </h2>
+      <p class="cta-section__lead">
+        {{ settings.cta_lead|default:"Заполните короткую анкету — мы свяжемся с вами и подберём направление, которое подходит именно вам." }}
+      </p>
+    </div>
+    <div class="cta-section__action">
+      <a href="{{ settings.join_url|default:'#' }}"
+         {% if settings.join_url %}target="_blank" rel="noopener"{% endif %}
+         class="btn btn--primary btn--lg">
+        {{ settings.cta_button_text|default:"Заполнить анкету" }}
+      </a>
+    </div>
+  </section>
+</div>
+
+{% endblock %}

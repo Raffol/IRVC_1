@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Контакты — ИРВЦ{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="page-hero__inner">
+    <div class="page-hero__crumbs">
+      <a href="{% url 'home' %}">Главная</a> <span>/</span> <span>Контакты</span>
+    </div>
+    <h1 class="page-hero__title">Контакты</h1>
+    <p class="page-hero__lead">
+      Мы рады любым вопросам и предложениям. Пишите, звоните или приходите в офис —
+      мы всегда на связи.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="contacts-grid">
+
+      {# Левая колонка — статичные контакты из SiteSettings #}
+      <div class="contacts-info">
+        {% if settings.email %}
+          <div class="contact-item">
+            <div class="contact-item__icon">✉</div>
+            <div>
+              <div class="contact-item__label">Электронная почта</div>
+              <div class="contact-item__value"><a href="mailto:{{ settings.email }}">{{ settings.email }}</a></div>
+            </div>
+          </div>
+        {% endif %}
+
+        {% if settings.phone %}
+          <div class="contact-item">
+            <div class="contact-item__icon contact-item__icon--green">☏</div>
+            <div>
+              <div class="contact-item__label">Телефон</div>
+              <div class="contact-item__value"><a href="tel:{{ settings.phone_clean|default:settings.phone }}">{{ settings.phone }}</a></div>
+              {% if settings.phone_hint %}
+                <div class="contact-item__hint">{{ settings.phone_hint }}</div>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+
+        {% if settings.address %}
+          <div class="contact-item">
+            <div class="contact-item__icon">📍</div>
+            <div>
+              <div class="contact-item__label">Адрес</div>
+              <div class="contact-item__value">{{ settings.address }}</div>
+              {% if settings.address_hint %}
+                <div class="contact-item__hint">{{ settings.address_hint }}</div>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+
+        {% if settings.vk_url or settings.telegram_url or settings.youtube_url %}
+          <div class="contact-item">
+            <div class="contact-item__icon contact-item__icon--green">◇</div>
+            <div>
+              <div class="contact-item__label">Соцсети</div>
+              <div class="contact-item__value" style="display: flex; gap: 12px; flex-wrap: wrap;">
+                {% if settings.vk_url %}<a href="{{ settings.vk_url }}" target="_blank" rel="noopener">ВКонтакте</a>{% endif %}
+                {% if settings.telegram_url %}<a href="{{ settings.telegram_url }}" target="_blank" rel="noopener">Telegram</a>{% endif %}
+                {% if settings.youtube_url %}<a href="{{ settings.youtube_url }}" target="_blank" rel="noopener">YouTube</a>{% endif %}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+
+      {#
+        Правая колонка — Vue-остров с формой.
+        endpoint — URL API (обрабатывает POST-запрос из формы).
+        csrf — CSRF-токен Django, требуется для защиты от CSRF-атак.
+      #}
+      <div id="contact-form-app"
+           data-endpoint="{% url 'api-contact' %}"
+           data-csrf="{{ csrf_token }}">
+        {# Fallback на случай, если Vue не загрузился — обычная HTML-форма #}
+        <noscript>
+          <form method="post" action="{% url 'contacts' %}" class="contact-form">
+            {% csrf_token %}
+            <h3>Написать нам</h3>
+            <p>Опишите, чем можем помочь.</p>
+            <div class="field"><label>Как к вам обращаться</label><input type="text" name="name" placeholder="Имя"></div>
+            <div class="field"><label>Email или телефон</label><input type="text" name="contact" placeholder="Куда написать"></div>
+            <div class="field"><label>Сообщение</label><textarea name="message" placeholder="Расскажите свою историю"></textarea></div>
+            <button type="submit" class="btn btn--primary btn--lg btn--wide">Отправить</button>
+          </form>
+        </noscript>
+      </div>
+
+    </div>
+
+    {# Карта — если в SiteSettings.map_embed сохранён iframe Яндекс.Карт, показываем его #}
+    {% if settings.map_embed %}
+      <div class="map-embed">{{ settings.map_embed|safe }}</div>
+    {% else %}
+      <div class="map-placeholder">
+        <div class="map-placeholder__text">
+          Здесь будет интерактивная карта<br>
+          <span style="color: var(--text-hint); font-weight: 400; font-size: 13px;">
+            Iframe Яндекс.Карт — вставится из админки
+          </span>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}
+
+{% block vue %}
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.4.38/dist/vue.global.prod.js"
+          onerror="var s=document.createElement('script');s.src='{% static 'js/vendor/vue.global.prod.js' %}';document.head.appendChild(s);"></script>
+{% endblock %}
+
+{% block vue_widgets %}
+  <script src="{% static 'js/widgets/contact-form.js' %}"></script>
+{% endblock %}
